@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
+import Remarkable from 'remarkable'
 
 class CommentBox extends Component {
   render() {
@@ -36,12 +37,13 @@ class CommentForm extends Component {
 
 class Comment extends Component {
   render() {
+    const md = new Remarkable()
     return (
       <div className="comment">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
-        {this.props.children}
+        {md.render(this.props.children.toString())}
       </div>
     )
   }
