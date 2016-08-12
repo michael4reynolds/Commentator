@@ -36,14 +36,19 @@ class CommentForm extends Component {
 }
 
 class Comment extends Component {
-  render() {
+  rawMarkup() {
     const md = new Remarkable()
+    const rawMarkup = md.render(this.props.children.toString())
+    return {__html: rawMarkup}
+  }
+
+  render() {
     return (
       <div className="comment">
         <h2 className="commentAuthor">
           {this.props.author}
         </h2>
-        {md.render(this.props.children.toString())}
+        <span dangerouslySetInnerHTML={this.rawMarkup()}/>
       </div>
     )
   }
