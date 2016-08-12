@@ -20,7 +20,7 @@ my-app/
     App.css
     App.js
     index.css
-    client.js
+    index.js
     logo.svg
 ```
 
@@ -28,7 +28,7 @@ For the project to build, **these files must exist with exact filenames**:
 
 * `index.html` is the page template;
 * `favicon.ico` is the icon you see in the browser tab;
-* `src/client.js` is the JavaScript entry point.
+* `src/index.js` is the JavaScript entry point.
 
 You can delete or rename the other files.
 
@@ -160,7 +160,7 @@ class Button extends Component {
 
 In development, expressing dependencies this way allows your styles to be reloaded on the fly as you edit them. In production, all CSS files will be concatenated into a single minified `.css` file in the build output.
 
-If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/client.js`, but you could always remove that import if you later migrate to a different build tool.
+If you are concerned about using Webpack-specific semantics, you can put all your CSS right into `src/index.css`. It would still be imported from `src/index.js`, but you could always remove that import if you later migrate to a different build tool.
 
 ### Post-Process CSS
 
@@ -242,7 +242,7 @@ npm install react-bootstrap --save
 npm install bootstrap@3 --save
 ```
 
-**Step 2.** Import Bootstrap CSS and optionally Bootstrap theme CSS in the ```client.js``` file.
+**Step 2.** Import Bootstrap CSS and optionally Bootstrap theme CSS in the ```index.js``` file.
 
 ```
 import './index.css';
@@ -313,7 +313,7 @@ src/App.js:4
   4: import './App.css';
             ^^^^^^^^^^^ ./App.css. Required module not found
 
-src/client.js:5
+src/index.js:5
   5: import './index.css';
             ^^^^^^^^^^^^^ ./index.css. Required module not found
 ```
