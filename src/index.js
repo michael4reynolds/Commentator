@@ -2,17 +2,20 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Remarkable from 'remarkable'
 
-const data = [
-  { id: 1, author: "Michael Reynolds", text: "This is one comment" },
-  { id: 2, author: "Anthony Robinson", text: "This is *another* comment" }
-]
-
 class CommentBox extends Component {
+  constructor(props) {
+    super(props)
+    
+    this.state = {
+      data: []
+    }
+  }
+
   render() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList data={this.props.data}/>
+        <CommentList data={this.state.data}/>
         <CommentForm/>
       </div>
     )
@@ -64,6 +67,6 @@ class Comment extends Component {
 }
 
 ReactDOM.render(
-  <CommentBox data={data}/>,
+  <CommentBox url="/api/comments"/>,
   document.getElementById('root')
 )
