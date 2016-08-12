@@ -2,12 +2,17 @@ import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Remarkable from 'remarkable'
 
+const data = [
+  { id: 1, author: "Michael Reynolds", text: "This is one comment" },
+  { id: 2, author: "Anthony Robinson", text: "This is *another* comment" }
+]
+
 class CommentBox extends Component {
   render() {
     return (
       <div className="commentBox">
         <h1>Comments</h1>
-        <CommentList/>
+        <CommentList data={this.props.data}/>
         <CommentForm/>
       </div>
     )
@@ -16,10 +21,14 @@ class CommentBox extends Component {
 
 class CommentList extends Component {
   render() {
+    const commentNodes = this.props.data.map(comment =>
+      <Comment author={comment.author} key={comment.id}>
+        {comment.text}
+      </Comment>
+    )
     return (
       <div className="commentList">
-        <Comment author="Michael Reyolds">This is one comment</Comment>
-        <Comment author="Anthony Robinson">This is *another* comment</Comment>
+        {commentNodes}
       </div>
     )
   }
@@ -55,6 +64,6 @@ class Comment extends Component {
 }
 
 ReactDOM.render(
-  <CommentBox />,
+  <CommentBox data={data}/>,
   document.getElementById('root')
 )
