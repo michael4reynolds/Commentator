@@ -1,3 +1,4 @@
+import axios from 'axios'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import Remarkable from 'remarkable'
@@ -10,6 +11,18 @@ class CommentBox extends Component {
       data: []
     }
   }
+
+  componentDidMount() {
+    axios.get(this.props.url)
+      .then(response => response.data)
+      .then(data => {
+        this.setState({data})
+      })
+      .catch(err => {
+        console.error(this.props.url, err.toString())
+      })
+  }
+
 
   render() {
     return (
@@ -67,6 +80,6 @@ class Comment extends Component {
 }
 
 ReactDOM.render(
-  <CommentBox url="/api/comments"/>,
+  <CommentBox url="http://localhost:3001/api/comments"/>,
   document.getElementById('root')
 )
