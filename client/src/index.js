@@ -12,7 +12,7 @@ class CommentBox extends Component {
     }
   }
 
-  componentDidMount() {
+  loadCommentsFromServer() {
     axios.get(this.props.url)
       .then(response => response.data)
       .then(data => {
@@ -21,6 +21,11 @@ class CommentBox extends Component {
       .catch(err => {
         console.error(this.props.url, err.toString())
       })
+  }
+
+  componentDidMount() {
+    this.loadCommentsFromServer()
+    setInterval(this.loadCommentsFromServer.bind(this), this.props.pollInterval)
   }
 
 
@@ -80,6 +85,6 @@ class Comment extends Component {
 }
 
 ReactDOM.render(
-  <CommentBox url="http://localhost:3001/api/comments"/>,
+  <CommentBox url="http://localhost:3001/api/comments" pollInterval={2000}/>,
   document.getElementById('root')
 )
