@@ -17,12 +17,14 @@ class CommentBox extends Component {
         this.setState({data})
       })
       .catch(err => {
-        console.error(this.props.url, err.toString())
+        console.error(this.props.url, err)
       })
   }
 
   handleCommentSubmit = (comment) => {
-    // todo: submit to the server and refresh the list
+    axios.post(this.props.url, comment)
+      .then(data => this.setState({data}))
+      .catch(err => console.log(this.props.url, err))
   }
 
   componentDidMount() {
@@ -77,7 +79,7 @@ class CommentForm extends Component {
 
     const author = this.state.author.trim()
     const text = this.state.text.trim()
-    if(!text || !author){
+    if (!text || !author) {
       return
     }
 
