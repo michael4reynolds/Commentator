@@ -68,9 +68,22 @@ class CommentForm extends Component {
     this.setState({text: e.target.value})
   }
 
+  handleSubmit = (e) => {
+    e.preventDefault()
+
+    const author = this.state.author.trim()
+    const text = this.state.text.trim()
+    if(!text || !author){
+      return
+    }
+
+    // todo: send request to the server
+    this.setState({author: '', text: ''})
+  }
+
   render() {
     return (
-      <form className="commentForm">
+      <form className="commentForm" onSubmit={this.handleSubmit}>
         <input type="text"
                placeholder="Your name"
                value={this.state.author}
