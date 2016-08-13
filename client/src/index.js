@@ -6,10 +6,8 @@ import Remarkable from 'remarkable'
 class CommentBox extends Component {
   constructor(props) {
     super(props)
-    
-    this.state = {
-      data: []
-    }
+
+    this.state = {data: []}
   }
 
   loadCommentsFromServer() {
