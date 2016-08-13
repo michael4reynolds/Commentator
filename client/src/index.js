@@ -58,9 +58,11 @@ class CommentList extends Component {
 class CommentForm extends Component {
   render() {
     return (
-      <div className="commentForm">
-        Hello, world! I am a CommentForm.
-      </div>
+      <form className="commentForm">
+        <input type="text" placeholder="Your name"/>
+        <input type="text" placeholder="Say something..."/>
+        <input type="submit" value="Post"/>
+      </form>
     )
   }
 }
@@ -84,7 +86,8 @@ class Comment extends Component {
   }
 }
 
+const API = `http://localhost:${process.env.API_PORT || 3001}/api/comments`
+
 ReactDOM.render(
-  <CommentBox url="http://localhost:3001/api/comments" pollInterval={2000}/>,
-  document.getElementById('root')
+  <CommentBox url={API} pollInterval={2000}/>, document.getElementById('root')
 )
