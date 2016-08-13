@@ -21,6 +21,10 @@ class CommentBox extends Component {
       })
   }
 
+  handleCommentSubmit = (comment) => {
+    // todo: submit to the server and refresh the list
+  }
+
   componentDidMount() {
     this.loadCommentsFromServer()
     setInterval(this.loadCommentsFromServer, this.props.pollInterval)
@@ -32,7 +36,7 @@ class CommentBox extends Component {
       <div className="commentBox">
         <h1>Comments</h1>
         <CommentList data={this.state.data}/>
-        <CommentForm/>
+        <CommentForm onCommentSubmit={this.handleCommentSubmit}/>
       </div>
     )
   }
@@ -77,7 +81,7 @@ class CommentForm extends Component {
       return
     }
 
-    // todo: send request to the server
+    this.props.onCommentSubmit({author, text})
     this.setState({author: '', text: ''})
   }
 
