@@ -10,7 +10,7 @@ class CommentBox extends Component {
     this.state = {data: []}
   }
 
-  loadCommentsFromServer() {
+  loadCommentsFromServer = () => {
     axios.get(this.props.url)
       .then(response => response.data)
       .then(data => {
@@ -23,7 +23,7 @@ class CommentBox extends Component {
 
   componentDidMount() {
     this.loadCommentsFromServer()
-    setInterval(this.loadCommentsFromServer.bind(this), this.props.pollInterval)
+    setInterval(this.loadCommentsFromServer, this.props.pollInterval)
   }
 
 
@@ -60,11 +60,11 @@ class CommentForm extends Component {
     this.state = {author: '', text: ''}
   }
 
-  handleAuthorChange(e) {
+  handleAuthorChange = (e) => {
     this.setState({author: e.target.value})
   }
 
-  handleTextChange(e) {
+  handleTextChange = (e) => {
     this.setState({text: e.target.value})
   }
 
@@ -74,12 +74,12 @@ class CommentForm extends Component {
         <input type="text"
                placeholder="Your name"
                value={this.state.author}
-               onChange={this.handleAuthorChange.bind(this)}
+               onChange={this.handleAuthorChange}
         />
         <input type="text"
                placeholder="Say something..."
                value={this.state.text}
-               onChange={this.handleTextChange.bind(this)}
+               onChange={this.handleTextChange}
         />
         <input type="submit" value="Post"/>
       </form>
