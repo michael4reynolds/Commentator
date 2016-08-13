@@ -22,6 +22,8 @@ class CommentBox extends Component {
   }
 
   handleCommentSubmit = (comment) => {
+    comment.id = Date.now()
+    this.setState({data: [...this.state.data, comment]})
     axios.post(this.props.url, comment)
       .then(data => this.setState({data}))
       .catch(err => console.log(this.props.url, err))
@@ -31,7 +33,6 @@ class CommentBox extends Component {
     this.loadCommentsFromServer()
     setInterval(this.loadCommentsFromServer, this.props.pollInterval)
   }
-
 
   render() {
     return (
