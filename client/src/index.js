@@ -54,11 +54,33 @@ class CommentList extends Component {
 }
 
 class CommentForm extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {author: '', text: ''}
+  }
+
+  handleAuthorChange(e) {
+    this.setState({author: e.target.value})
+  }
+
+  handleTextChange(e) {
+    this.setState({text: e.target.value})
+  }
+
   render() {
     return (
       <form className="commentForm">
-        <input type="text" placeholder="Your name"/>
-        <input type="text" placeholder="Say something..."/>
+        <input type="text"
+               placeholder="Your name"
+               value={this.state.author}
+               onChange={this.handleAuthorChange.bind(this)}
+        />
+        <input type="text"
+               placeholder="Say something..."
+               value={this.state.text}
+               onChange={this.handleTextChange.bind(this)}
+        />
         <input type="submit" value="Post"/>
       </form>
     )
