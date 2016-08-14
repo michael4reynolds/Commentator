@@ -9,3 +9,9 @@ npm i
 cd ..
 npm start
 ```
+
+## Testing
+```
+cd client
+npm test
+```
